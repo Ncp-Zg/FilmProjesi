@@ -17,7 +17,7 @@ eventListeners();
 function eventListeners(){
     form.addEventListener("submit",addFilm);
     document.addEventListener("DOMContentLoaded",function(){
-       let films = storage.getFilmFromStorage();
+       let films = storage.getFilmsFromStorage();
        ui.loadAllFilms(films);
        cardbody.addEventListener("click",deleteFilm);
     });
@@ -49,5 +49,8 @@ ui.clearInputs(titleElement,urlElement,directorElement);
 function deleteFilm(e){
     if(e.target.id === "delete-film"){
         ui.deleteFilmFromUI(e.target);
+        storage.deleteFilmFromStorage(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
+
+        ui.displayMessages("Silme İşlemi başarılı...","success")
     }
 }
