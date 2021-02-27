@@ -20,18 +20,24 @@ function eventListeners(){
     document.addEventListener("DOMContentLoaded",function(){
        let films = storage.getFilmsFromStorage();
        ui.loadAllFilms(films);
-       cardbody.addEventListener("click",deleteFilm);
-       clear.addEventListener("click",clearAllFilms)
+       
     });
+        cardbody.addEventListener("click",deleteFilm);
+        clear.addEventListener("click",clearAllFilms);
     
 }
 function addFilm(e){
+    let film = storage.getFilmsFromStorage();
+    console.log(film);
     const title = titleElement.value;
     const director = directorElement.value;
     const url = urlElement.value;
 
     if (title === "" || director === "" || url === ""){
         ui.displayMessages("Tüm Alanları doldurun...", "danger");
+    }
+    else if(film.indexOf != -1){
+        ui.displayMessages("Aynı isimde bir film mevcut..", "danger");
     }
     else{
         // Yeni Film
